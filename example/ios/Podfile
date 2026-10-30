@@ -31,9 +31,6 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-  # The native Abrova Sync SDK's protocol library is published on Abrova Center.
-  pod 'PNProtocol', :git => 'https://center.abrova.ir/abrova/pn-protocol-ios.git'
-
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do
     inherit! :search_paths

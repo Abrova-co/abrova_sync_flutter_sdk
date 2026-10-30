@@ -13,7 +13,7 @@ The package is published on [Abrova Center](https://center.abrova.ir). Add to yo
 dependencies:
   abrova_sync:
     hosted: https://center.abrova.ir/api/packages/abrova/pub
-    version: ^0.3.0
+    version: ^0.3.1
 ```
 
 Then run:
@@ -24,10 +24,13 @@ flutter pub get
 
 Android needs no setup: the plugin adds the Abrova Center repository for the native Android SDK itself.
 
-On iOS the plugin includes the native SDK. Add its protocol library (`PNProtocol`, also on Abrova Center) to the `Runner` target in `ios/Podfile`:
+iOS needs no setup either: the plugin includes the native SDK and brings its protocol library from Abrova Center.
+
+If your app uses CocoaPods instead of Swift Package Manager, add these two lines at the top of `ios/Podfile`:
 
 ```ruby
-pod 'PNProtocol', :git => 'https://center.abrova.ir/abrova/pn-protocol-ios.git'
+source 'https://center.abrova.ir/abrova/specs.git'
+source 'https://cdn.cocoapods.org/'
 ```
 
 ## Usage

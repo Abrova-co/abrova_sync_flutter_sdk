@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'abrova_sync'
-  s.version          = '0.3.0'
+  s.version          = '0.3.1'
   s.summary          = 'Flutter plugin for AbrovaSync realtime database SDK'
   s.description      = <<-DESC
 Flutter plugin for AbrovaSync — realtime database SDK with offline-first sync.
@@ -10,11 +10,10 @@ Flutter plugin for AbrovaSync — realtime database SDK with offline-first sync.
   s.author           = { 'Abrova' => 'founder@abrova.ir' }
   s.source           = { :path => '.' }
 
-  s.source_files = 'Classes/AbrovaSyncPlugin.swift'
+  s.source_files = 'abrova_sync/Sources/abrova_sync/**/*.swift'
 
   s.dependency 'Flutter'
   s.dependency 'AbrovaSync', '~> 0.3.0'
-  s.dependency 'PNProtocol', '~> 0.2'
 
   s.platform = :ios, '13.0'
   s.swift_version = '5.7'

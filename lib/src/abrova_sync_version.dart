@@ -5,4 +5,4 @@ const String abrovaSyncSdkName = 'flutter';
 /// Version of the abrova_sync plugin.
 ///
 /// Must match `version` in pubspec.yaml (enforced by a unit test).
-const String abrovaSyncSdkVersion = '0.3.0';
+const String abrovaSyncSdkVersion = '0.3.1';
