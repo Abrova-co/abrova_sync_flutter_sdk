@@ -1,0 +1,29 @@
+name: abrova_sync_example
+description: "AbrovaSync Flutter SDK Example - Demonstrates all features of the AbrovaSync realtime database SDK"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # AbrovaSync SDK, from Abrova Center
+  abrova_sync:
+    hosted: https://center.abrova.ir/api/packages/abrova/pub
+    version: ^0.3.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  # config/local.json (not checked in, see lib/app_config.dart) is read at start-up.
+  assets:
+    - config/
