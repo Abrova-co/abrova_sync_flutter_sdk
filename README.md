@@ -13,7 +13,7 @@ The package is published on [Abrova Center](https://center.abrova.ir). Add to yo
 dependencies:
   abrova_sync:
     hosted: https://center.abrova.ir/api/packages/abrova/pub
-    version: ^0.3.1
+    version: ^0.4.0
 ```
 
 Then run:
@@ -23,6 +23,8 @@ flutter pub get
 ```
 
 Android needs no setup: the plugin adds the Abrova Center repository for the native Android SDK itself.
+
+**macOS, Windows and Linux:** the same package and the same code. Flutter uses `abrova_sync_desktop` on computers by itself; on macOS, allow outgoing connections (`com.apple.security.network.client` in both entitlements files). See [Sync on computers](https://abrova.ir/docs/sync/desktop).
 
 iOS needs no setup either: the plugin includes the native SDK and brings its protocol library from Abrova Center.
 

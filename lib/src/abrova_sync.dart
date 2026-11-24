@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:abrova_sync_desktop/abrova_sync_channels.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'abrova_sync_config.dart';
@@ -88,7 +89,9 @@ enum SyncState {
 /// await AbrovaSync.disconnect();
 /// ```
 class AbrovaSync {
-  static const MethodChannel _channel = MethodChannel('ir.abrova.sync/abrova_sync');
+  // The platform's messenger (native SDK) unless a platform package plugged in its own (computers).
+  static final MethodChannel _channel =
+      MethodChannel('ir.abrova.sync/abrova_sync', const StandardMethodCodec(), AbrovaSyncChannels.messenger);
 
   static OnConnectionStateCallback? _onConnectionState;
   static OnErrorCallback? _onError;

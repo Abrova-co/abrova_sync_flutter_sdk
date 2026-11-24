@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:abrova_sync_desktop/abrova_sync_channels.dart';
 import 'package:flutter/services.dart';
 
 /// Delivers realtime events to listeners.
@@ -46,7 +47,7 @@ class _Listener {
 }
 
 class _ChannelHub {
-  _ChannelHub(String name) : _channel = EventChannel(name);
+  _ChannelHub(String name) : _channel = EventChannel(name, const StandardMethodCodec(), AbrovaSyncChannels.messenger);
 
   final EventChannel _channel;
   final Map<String, _Listener> _listeners = {};
@@ -60,7 +61,7 @@ class _ChannelHub {
     void Function(Object error)? onError,
   ) {
     _listeners[listenerId] = _Listener(onData, onError);
-    _subscription ??= _channel.receiveBroadcastStream().listen(
+    _subscription ??= _stream().listen(
       _dispatch,
       onError: (Object error) {
         // A channel-level error has no listener id: tell every listener.
@@ -69,6 +70,36 @@ class _ChannelHub {
         }
       },
     );
+  }
+
+  /// The channel's events. Flutter's EventChannel sends listen / cancel through
+  /// the platform's messenger even when it was given another one, so with a
+  /// platform package's own messenger (computers) the hub subscribes itself.
+  Stream<dynamic> _stream() {
+    final messenger = AbrovaSyncChannels.messenger;
+    if (messenger == null) return _channel.receiveBroadcastStream();
+    const codec = StandardMethodCodec();
+    final control = MethodChannel(_channel.name, codec, messenger);
+    late final StreamController<dynamic> out;
+    out = StreamController<dynamic>.broadcast(
+      onListen: () async {
+        messenger.setMessageHandler(_channel.name, (reply) async {
+          if (reply == null) return null;
+          try {
+            out.add(codec.decodeEnvelope(reply));
+          } on PlatformException catch (e) {
+            out.addError(e);
+          }
+          return null;
+        });
+        await control.invokeMethod<void>('listen');
+      },
+      onCancel: () async {
+        messenger.setMessageHandler(_channel.name, null);
+        await control.invokeMethod<void>('cancel');
+      },
+    );
+    return out.stream;
   }
 
   void remove(String listenerId) {

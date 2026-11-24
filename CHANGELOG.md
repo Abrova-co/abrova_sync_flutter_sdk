@@ -1,3 +1,13 @@
+## 0.4.0
+
+### Added
+
+- macOS, Windows and Linux: the same API as on Android and iOS, with documents, queries, realtime listeners, batches, signed user tokens and offline persistence on the computer. Nothing to add to your code; on macOS, allow outgoing connections in your entitlements.
+
+### Changed
+
+- Requires Flutter 3.44 or later (Dart 3.12).
+
 ## 0.3.1
 
 ### Added
