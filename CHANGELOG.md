@@ -1,3 +1,9 @@
+## 0.4.1
+
+### Added
+
+- Web: the same API in Flutter web apps, with documents, queries, realtime listeners, batches, signed user tokens and offline persistence in the browser. Nothing to add to your code. On the web your API key is public: protect your data with security rules and signed user tokens.
+
 ## 0.4.0
 
 ### Added

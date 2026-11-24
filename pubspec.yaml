@@ -1,6 +1,6 @@
 name: abrova_sync
 description: Realtime database plugin for Flutter - Firebase alternative with instant data synchronization across all connected devices
-version: 0.4.0
+version: 0.4.1
 homepage: https://abrova.ir/
 
 environment:
@@ -8,9 +8,12 @@ environment:
   flutter: '>=3.44.0'
 
 dependencies:
-  # Computers (macOS, Windows, Linux): Dart, no native SDK. Phones keep the
-  # native SDKs and compile nothing of these.
+  # Computers (macOS, Windows, Linux): Dart, no native SDK; the web: the
+  # Abrova Sync web SDK. Phones keep the native SDKs and compile nothing of these.
   abrova_sync_desktop:
+    hosted: https://center.abrova.ir/api/packages/abrova/pub
+    version: ^0.1.0
+  abrova_sync_web:
     hosted: https://center.abrova.ir/api/packages/abrova/pub
     version: ^0.1.0
   flutter:
@@ -36,3 +39,5 @@ flutter:
         default_package: abrova_sync_desktop
       linux:
         default_package: abrova_sync_desktop
+      web:
+        default_package: abrova_sync_web
